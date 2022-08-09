@@ -16,6 +16,8 @@ const bubble7 = document.getElementById("bubble7");
 const bubble8 = document.getElementById("bubble8");
 
 gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
 
 MotionPathPlugin.convertToPath("#green-path", true);
 // MotionPathPlugin.convertToPath("#yellow-path", true);
@@ -54,8 +56,20 @@ gsap.to(redCircle, {
   ease: "linear",
 });
 
+gsap.from(".highlights", {
+  ScrollTrigger: ".highlights",
+  autoAlpha: 0,
+  duration: 1.5,
+  stagger: 0.1,
+  from: "center",
+  repeat: -1,
+  yoyo: true,
+});
+
+// gsap.to(window, {duration: 2, scrollTo: ""})
+
 gsap.to(liquid, {
-  boxShadow: "0px 0px 100px #afc42d",
+  boxShadow: "0px 0px 100px #37fd20",
   repeat: -1,
   duration: 5,
 });
@@ -63,7 +77,7 @@ gsap.to(liquid, {
 const tlBubble1 = gsap.timeline({ repeat: -1 });
 tlBubble1.to(bubble1, {
   y: 2200,
-  fill: "#afc42d",
+  fill: "#37fd20",
   duration: 4,
   ease: "power1.in",
 });
@@ -79,7 +93,7 @@ tlBubble2.to(bubble2, {
 tlBubble2.to(
   bubble2,
   {
-    fill: "#afc42d",
+    fill: "#37fd20",
     duration: 3,
     ease: "power1.in",
   },
@@ -178,3 +192,15 @@ tlBubble8.from(
   },
   "<"
 );
+
+gsap.to("#curie-quote", {
+  duration: 4,
+  text: {
+    value: "Nothing in life is to be feared; it is only to be understood.",
+  },
+
+  ease: "none",
+  repeat: -1,
+  repeatDelay: 10,
+  yoyo: true,
+});
